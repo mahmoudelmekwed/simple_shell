@@ -18,8 +18,8 @@ int _myexit(info_t *i)
 		{
 			i->status = 2;
 			print_error1(i, "Illegal number: ");
-			_eputs1(i->argv[1]);
-			_eputchar1('\n');
+			_eputs(i->argv[1]);
+			_eputchar('\n');
 			return (1);
 		}
 		i->err_num = erratoi1(i->argv[1]);
@@ -45,36 +45,36 @@ int _mycd(info_t *i)
 		_puts1("TODO: >>getcwd failure emsg here<<\n");
 	if (!i->argv[1])
 	{
-		dir = _getenv(i, "HOME=");
+		dir = _getenv1(i, "HOME=");
 		if (!dir)
 			chdir_ret = /* TODO: what should this be? */
 				chdir((dir = _getenv1(i, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp(i->argv[1], "-") == 0)
+	else if (_strcmp1(i->argv[1], "-") == 0)
 	{
-		if (!_getenv(i, "OLDPWD="))
+		if (!_getenv1(i, "OLDPWD="))
 		{
 			_puts1(x);
 			_putchar1('\n');
 			return (1);
 		}
-		_puts1(_getenv1(i, "OLDPWD=")), _putchar('\n');
+		_puts1(_getenv1(i, "OLDPWD=")), _putchar1('\n');
 		chdir_ret = /* TODO: what should this be? */
-			chdir((dir = _getenv(i, "OLDPWD=")) ? dir : "/");
+			chdir((dir = _getenv1(i, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_ret = chdir(i->argv[1]);
 	if (chdir_ret == -1)
 	{
 		print_error1(i, "can't cd to ");
-		_puts1(i->argv[1]), _eputchar1('\n');
+		_eputs(i->argv[1]), _eputchar('\n');
 	}
 	else
 	{
-		setenv(i, "OLDPWD", _getenv1(i, "PWD="));
-		setenv(i, "PWD", getcwd(buffer, 1024));
+		_setenv(i, "OLDPWD", _getenv1(i, "PWD="));
+		_setenv(i, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

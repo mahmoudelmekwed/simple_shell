@@ -108,21 +108,21 @@ typedef struct builtin
 } builtin_table;
 
 
-int hsh1(info_t *, char **);
-int find_builtin1(info_t *);
-void find_cmd1(info_t *);
-void fork_cmd1(info_t *);
+int hsh(info_t *, char **);
+int find_builtin(info_t *);
+void find_cmd(info_t *);
+void fork_cmd(info_t *);
 
-int is_cmd1(info_t *, char *);
-char *dup_chars1(char *, int, int);
-char *find_path1(info_t *, char *, char *);
+int is_cmd(info_t *, char *);
+char *dup_chars(char *, int, int);
+char *find_path(info_t *, char *, char *);
 
-int loophsh1(char **);
+int loophsh(char **);
 
-void _eputs1(char *);
-int _eputchar1(char);
-int _putfd1(char c, int fd);
-int _putsfd1(char *str, int fd);
+void _eputs(char *);
+int _eputchar(char);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
 
 int _strlen1(char *);
 int _strcmp1(char *, char *);
@@ -178,6 +178,10 @@ int _myenv1(info_t *);
 int _mysetenv1(info_t *);
 int _myunsetenv1(info_t *);
 int populate_env_list1(info_t *);
+
+char **get_environ(info_t *);
+int _unsetenv(info_t *, char *);
+int _setenv(info_t *, char *, char *);
 
 char *get_history_file1(info_t *info);
 int write_history1(info_t *info);
