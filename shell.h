@@ -179,9 +179,9 @@ int _mysetenv1(info_t *);
 int _myunsetenv1(info_t *);
 int populate_env_list1(info_t *);
 
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+char **get_environ1(info_t *);
+int _unsetenv1(info_t *, char *);
+int _setenv1(info_t *, char *, char *);
 
 char *get_history_file1(info_t *info);
 int write_history1(info_t *info);
