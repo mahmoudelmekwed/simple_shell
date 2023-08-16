@@ -202,7 +202,7 @@ list_t *node_starts_with1(list_t *, char *, char);
 ssize_t get_node_index1(list_t *, list_t *);
 
 int is_chain1(info_t *, char *, size_t *);
-void check_chain1(info_t *, char *, size_t *, size_t *, size_t *);
+void check_chain1(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias1(info_t *);
 int replace_vars1(info_t *);
 int replace_string1(char **, char **);
