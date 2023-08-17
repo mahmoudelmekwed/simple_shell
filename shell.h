@@ -199,7 +199,7 @@ size_t list_len1(const list_t *);
 char **list_to_strings1(list_t *);
 size_t print_list1(const list_t *);
 list_t *node_starts_with1(list_t *, char *, char);
-ssize_t get_node_index1(list_t *, list_t *);
+size_t get_node_index1(list_t *, list_t *);
 
 int is_chain1(info_t *, char *, size_t *);
 void check_chain1(info_t *, char *, size_t *, size_t, size_t);
