@@ -108,10 +108,10 @@ typedef struct builtin
 } builtin_table;
 
 
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int hsh1(info_t *, char **);
+int find_builtin1(info_t *);
+void find_cmd1(info_t *);
+void fork_cmd1(info_t *);
 
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
