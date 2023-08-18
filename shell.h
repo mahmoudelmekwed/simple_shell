@@ -132,7 +132,7 @@ char *_strcat1(char *, char *);
 char *_strcpy1(char *, char *);
 char *_strdup1(const char *);
 void _puts1(char *);
-int _putchar1(char);
+int _putchar1(char *);
 
 char *_strncpy1(char *, char *, int);
 char *_strncat1(char *, char *, int);
