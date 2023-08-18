@@ -205,6 +205,6 @@ int is_chain1(info_t *, char *, size_t *);
 void check_chain1(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias1(info_t *);
 int replace_vars1(info_t *);
-int replace_string1(char **, char **);
+int replace_string1(char **, char *);
 
 #endif
