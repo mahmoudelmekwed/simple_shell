@@ -69,12 +69,12 @@ int _mycd(info_t *i)
 	if (chdir_ret == -1)
 	{
 		print_error1(i, "can't cd to ");
-		_eputs(i->argv[1]), _eputchar('\n');
+		_puts1(i->argv[1]), _putchar1('\n');
 	}
 	else
 	{
-		_setenv(i, "OLDPWD", _getenv1(i, "PWD="));
-		_setenv(i, "PWD", getcwd(buffer, 1024));
+		_setenv1(i, "OLDPWD", _getenv1(i, "PWD="));
+		_setenv1(i, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

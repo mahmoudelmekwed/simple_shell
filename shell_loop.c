@@ -22,9 +22,9 @@ int hsh1(info_t *i, char **ac)
 		if (x != -1)
 		{
 			set_info1(i, ac);
-			b_ret = find_builtin(i);
+			b_ret = find_builtin1(i);
 			if (b_ret == -1)
-				find_cmd(i);
+				find_cmd1(i);
 		}
 		else if (interactive1(i))
 			_putchar1('\n');
@@ -88,9 +88,9 @@ void find_cmd1(info_t *i)
 	if (i->linecount_flag == 1)
 	{
 		i->line_count++;
-		i->linecount_flag == 0;
+		i->linecount_flag = 0;
 	}
-	for (x = 0, v = 0, i->arg[x]; x++;)
+	for (x = 0, v = 0; i->arg[x]; x++)
 		if (!is_delim1(i->arg[x], " \t\n"))
 			v++;
 	if (!v)
@@ -99,13 +99,13 @@ void find_cmd1(info_t *i)
 	if (!p)
 	{
 		i->path = p;
-		fork_cmd(i);
+		fork_cmd1(i);
 	}
 	else
 	{
 		if ((interactive1(i) || _getenv1(i, "PATH=")
 					|| i->argv[0][0] == '/') && is_cmd(i, i->argv[0]))
-			fork_cmd(i);
+			fork_cmd1(i);
 		else if (*(i->arg) != '\n')
 		{
 			i->status = 127;
@@ -132,7 +132,7 @@ void fork_cmd1(info_t *i)
 	}
 	if (c_pid == 0)
 	{
-		if (execve(i->path, i->argv, get_environ(i)) == -1)
+		if (execve(i->path, i->argv, get_environ1(i)) == -1)
 		{
 			free_info1(i, 1);
 			if (errno == EACCES)

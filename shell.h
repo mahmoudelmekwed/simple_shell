@@ -132,7 +132,7 @@ char *_strcat1(char *, char *);
 char *_strcpy1(char *, char *);
 char *_strdup1(const char *);
 void _puts1(char *);
-int _putchar1(char *);
+int _putchar1(char);
 
 char *_strncpy1(char *, char *, int);
 char *_strncat1(char *, char *, int);
@@ -199,7 +199,7 @@ size_t list_len1(const list_t *);
 char **list_to_strings1(list_t *);
 size_t print_list1(const list_t *);
 list_t *node_starts_with1(list_t *, char *, char);
-size_t get_node_index1(list_t *, list_t *);
+ssize_t get_node_index1(list_t *, list_t *);
 
 int is_chain1(info_t *, char *, size_t *);
 void check_chain1(info_t *, char *, size_t *, size_t, size_t);
