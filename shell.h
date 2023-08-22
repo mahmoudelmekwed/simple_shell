@@ -108,10 +108,10 @@ typedef struct builtin
 } builtin_table;
 
 
-int hsh1(info_t *, char **);
-int find_builtin1(info_t *);
-void find_cmd1(info_t *);
-void fork_cmd1(info_t *);
+int hsh(info_t *, char **);
+int find_builtin(info_t *);
+void find_cmd(info_t *);
+void fork_cmd(info_t *);
 
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
@@ -124,87 +124,87 @@ int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-int _strlen1(char *);
-int _strcmp1(char *, char *);
-char *starts_with1(const char *, const char *);
-char *_strcat1(char *, char *);
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
 
-char *_strcpy1(char *, char *);
-char *_strdup1(const char *);
-void _puts1(char *);
-int _putchar1(char);
+char *_strcpy(char *, char *);
+char *_strdup(const char *);
+void _puts(char *);
+int _putchar(char);
 
-char *_strncpy1(char *, char *, int);
-char *_strncat1(char *, char *, int);
-char *_strchr1(char *, char);
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
 
-char **strtow1(char *, char *);
-char **strtow3(char *, char);
+char **strtow(char *, char *);
+char **strtow2(char *, char);
 
-char *_memset1(char *, char, unsigned int);
-void ffree1(char **);
-void *_realloc1(void *, unsigned int, unsigned int);
+char *_memset(char *, char, unsigned int);
+void ffree(char **);
+void *_realloc(void *, unsigned int, unsigned int);
 
-int bfree1(void **);
+int bfree(void **);
 
-int interactive1(info_t *);
-int is_delim1(char, char *);
-int _isalpha1(int);
-int _atoi1(char *);
+int interactive(info_t *);
+int is_delim(char, char *);
+int _isalpha(int);
+int _atoi(char *);
 
-int erratoi1(char *);
-void print_error1(info_t *, char *);
-int print_d1(int, int);
-char *convert_number1(long int, int, int);
-void remove_comments1(char *);
+int erratoi(char *);
+void print_error(info_t *, char *);
+int print_d(int, int);
+char *convert_number(long int, int, int);
+void remove_comments(char *);
 
-int _myexit1(info_t *);
-int _mycd1(info_t *);
-int _myhelp1(info_t *);
+int _myexit(info_t *);
+int _mycd(info_t *);
+int _myhelp(info_t *);
 
-int _myhistory1(info_t *);
-int _myalias1(info_t *);
+int _myhistory(info_t *);
+int _myalias(info_t *);
 
-ssize_t get_input1(info_t *);
-int _getline1(info_t *, char **, size_t *);
-void siginhandler1(int);
+ssize_t get_input(info_t *);
+int _getline(info_t *, char **, size_t *);
+void siginhandler(int);
 
-void clear_info1(info_t *);
-void set_info1(info_t *, char **);
-void free_info1(info_t *, int);
+void clear_info(info_t *);
+void set_info(info_t *, char **);
+void free_info(info_t *, int);
 
-char *_getenv1(info_t *, const char *);
-int _myenv1(info_t *);
-int _mysetenv1(info_t *);
-int _myunsetenv1(info_t *);
-int populate_env_list1(info_t *);
+char *_getenv(info_t *, const char *);
+int _myenv(info_t *);
+int _mysetenv(info_t *);
+int _myunsetenv(info_t *);
+int populate_env_list(info_t *);
 
-char **get_environ1(info_t *);
-int _unsetenv1(info_t *, char *);
-int _setenv1(info_t *, char *, char *);
+char **get_environ(info_t *);
+int _unsetenv(info_t *, char *);
+int _setenv(info_t *, char *, char *);
 
-char *get_history_file1(info_t *info);
-int write_history1(info_t *info);
-int read_history1(info_t *info);
-int build_history_list1(info_t *info, char *buf, int linecount);
-int renumber_history1(info_t *info);
+char *get_history_file(info_t *info);
+int write_history(info_t *info);
+int read_history(info_t *info);
+int build_history_list(info_t *info, char *buf, int linecount);
+int renumber_history(info_t *info);
 
-list_t *add_node1(list_t **, const char *, int);
-list_t *add_node_end1(list_t **, const char *, int);
-size_t print_list_str1(const list_t *);
-int delete_node_at_index1(list_t **, unsigned int);
-void free_list1(list_t **);
+list_t *add_node(list_t **, const char *, int);
+list_t *add_node_end(list_t **, const char *, int);
+size_t print_list_str(const list_t *);
+int delete_node_at_index(list_t **, unsigned int);
+void free_list(list_t **);
 
-size_t list_len1(const list_t *);
-char **list_to_strings1(list_t *);
-size_t print_list1(const list_t *);
-list_t *node_starts_with1(list_t *, char *, char);
-ssize_t get_node_index1(list_t *, list_t *);
+size_t list_len(const list_t *);
+char **list_to_strings(list_t *);
+size_t print_list(const list_t *);
+list_t *node_starts_with(list_t *, char *, char);
+ssize_t get_node_index(list_t *, list_t *);
 
-int is_chain1(info_t *, char *, size_t *);
-void check_chain1(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias1(info_t *);
-int replace_vars1(info_t *);
-int replace_string1(char **, char *);
+int is_chain(info_t *, char *, size_t *);
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
+int replace_alias(info_t *);
+int replace_vars(info_t *);
+int replace_string(char **, char *);
 
 #endif
