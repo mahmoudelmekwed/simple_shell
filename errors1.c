@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * erratoi1 - Entry point
- * erratoi1: ...
+ * erratoi - Entry point
+ * erratoi: ...
  * @x: ...
  * Return: ...
  */
-int erratoi1(char *x)
+int erratoi(char *x)
 {
 	int l = 0;
 	unsigned int res = 0;
@@ -29,38 +29,38 @@ int erratoi1(char *x)
 }
 
 /**
- * print_error1 - Entry point
- * print_error1: ...
+ * print_error - Entry point
+ * print_error: ...
  * @w: ..
  * @x: ..
  * Return: ...
  */
-void print_error1(info_t *w, char *x)
+void print_error(info_t *w, char *x)
 {
-	_puts1(w->fname);
-	_puts1(": ");
-	print_d1(w->line_count, STDERR_FILENO);
-	_puts1(": ");
-	_puts1(w->argv[0]);
-	_puts1(": ");
-	_puts1(x);
+	_puts(w->fname);
+	_puts(": ");
+	print_d(w->line_count, STDERR_FILENO);
+	_puts(": ");
+	_puts(w->argv[0]);
+	_puts(": ");
+	_puts(x);
 }
 
 /**
- * print_d1 - Entry point
- * print_d1: ...
+ * print_d - Entry point
+ * print_d: ...
  * @i: ...
  * @fg: ..
  * Return: ...
  */
-int print_d1(int i, int fg)
+int print_d(int i, int fg)
 {
 	int (*__putchar)(char) = __putchar;
 	int z, c = 0;
 	unsigned int _ab_, cu;
 
 	if (fg == STDERR_FILENO)
-		__putchar = _putchar1;
+		__putchar = _putchar;
 	if (i < 0)
 	{
 		_ab_ = -i;
@@ -85,14 +85,14 @@ int print_d1(int i, int fg)
 }
 
 /**
- * convert_number1 - Entry point
- * convert_number1: ...
+ * convert_number - Entry point
+ * convert_number: ...
  * @n: ...
  * @b: ...
  * @f: ...
  * Return: ...
  */
-char *convert_number1(long int n, int b, int f)
+char *convert_number(long int n, int b, int f)
 {
 	static char *arr;
 	static char buff[50];
@@ -120,12 +120,12 @@ char *convert_number1(long int n, int b, int f)
 }
 
 /**
- * remove_comments1 - Entry point
- * remove_comments1: ...
+ * remove_comments - Entry point
+ * remove_comments: ...
  * @b: ...
  * Return: ...
  */
-void remove_comments1(char *b)
+void remove_comments(char *b)
 {
 	int x;
 

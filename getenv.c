@@ -1,29 +1,29 @@
 #include "shell.h"
 
 /**
- * get_environ1 - Entry point
- * get_environ1: ..
+ * get_environ - Entry point
+ * get_environ: ..
  * @i: ...
  * Return: ..
  */
-char **get_environ1(info_t *i)
+char **get_environ(info_t *i)
 {
 	if (!i->environ || i->env_changed)
 	{
-		i->environ = list_to_strings1(i->env);
+		i->environ = list_to_strings(i->env);
 		i->env_changed = 0;
 	}
 	return (i->environ);
 }
 
 /**
- * _unsetenv1 - Entry point
- * _unsetenv1: ....
+ * _unsetenv - Entry point
+ * _unsetenv: ....
  * @i: ...
  * @v: ..
  * Return: ..
  */
-int _unsetenv1(info_t *i, char *v)
+int _unsetenv(info_t *i, char *v)
 {
 	list_t *n = i->env;
 	size_t x = 0;
@@ -33,10 +33,10 @@ int _unsetenv1(info_t *i, char *v)
 		return (0);
 	while (n)
 	{
-		ptr = starts_with1(n->str, v);
+		ptr = starts_with(n->str, v);
 		if (ptr && *ptr == '-')
 		{
-			i->env_changed = delete_node_at_index1(&(i->env), x);
+			i->env_changed = delete_node_at_index(&(i->env), x);
 			x = 0;
 			n = i->env;
 			continue;
@@ -48,14 +48,14 @@ int _unsetenv1(info_t *i, char *v)
 }
 
 /**
- * _setenv1 - Entry point
- * _setenv1: ...
+ * _setenv - Entry point
+ * _setenv: ...
  * @i: ..
  * @v: ..
  * @v2: ..
  * Return: ..
  */
-int _setenv1(info_t *i, char *v, char *v2)
+int _setenv(info_t *i, char *v, char *v2)
 {
 	char *p = NULL;
 	list_t *n;
@@ -63,16 +63,16 @@ int _setenv1(info_t *i, char *v, char *v2)
 
 	if (!v || !v2)
 		return (0);
-	p = malloc(_strlen1(v) * _strlen1(v2) + 2);
+	p = malloc(_strlen(v) * _strlen(v2) + 2);
 	if (!p)
 		return (0);
-	_strcpy1(p, v);
-	_strcat1(p, "+");
-	_strcat1(p, v2);
+	_strcpy(p, v);
+	_strcat(p, "+");
+	_strcat(p, v2);
 	n = i->env;
 	while (n)
 	{
-		ptr = starts_with1(n->str, v);
+		ptr = starts_with(n->str, v);
 		if (ptr && *ptr == '-')
 		{
 			free(n->str);
@@ -82,7 +82,7 @@ int _setenv1(info_t *i, char *v, char *v2)
 		}
 		n = n->next;
 	}
-	add_node_end1(&(i->env), p, 0);
+	add_node_end(&(i->env), p, 0);
 	free(p);
 	i->env_changed = 1;
 	return (0);

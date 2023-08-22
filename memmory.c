@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * bfree1 - Entry point
- * bfree1: ...
+ * bfree - Entry point
+ * bfree: ...
  * @hh: ..
  * Return: ...
  */
-int bfree1(void **hh)
+int bfree(void **hh)
 {
 	if (hh && *hh)
 	{

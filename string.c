@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _strlen1 - Entry point
- * _strlen1: ..
+ * _strlen - Entry point
+ * _strlen: ..
  * @x: ...
  * Return: ..
  */
-int _strlen1(char *x)
+int _strlen(char *x)
 {
 	int f = 0;
 
@@ -18,13 +18,13 @@ int _strlen1(char *x)
 }
 
 /**
- * _strcmp1 - Entry point
- * _strcmp1: ...
+ * _strcmp - Entry point
+ * _strcmp: ...
  * @x1: ..
  * @x2: ..
  * Return: ..
  */
-int _strcmp1(char *x1, char *x2)
+int _strcmp(char *x1, char *x2)
 {
 	while (*x1 && *x2)
 	{
@@ -40,13 +40,13 @@ int _strcmp1(char *x1, char *x2)
 }
 
 /**
- * starts_with1 - Entry point
- * starts_with1: ...
+ * starts_with - Entry point
+ * starts_with: ...
  * @hay: ...
  * @need: ..
  * Return: ..
  */
-char *starts_with1(const char *hay, const char *need)
+char *starts_with(const char *hay, const char *need)
 {
 	while (*need)
 		if (*need++ != *hay++)
@@ -55,13 +55,13 @@ char *starts_with1(const char *hay, const char *need)
 }
 
 /**
- * _strcat1 - Entry point
- * _strcat1: ..
+ * _strcat - Entry point
+ * _strcat: ..
  * @des: ..
  * @arc: ..
  * Return: ..
  */
-char *_strcat1(char *des, char *arc)
+char *_strcat(char *des, char *arc)
 {
 	char *get = des;
 

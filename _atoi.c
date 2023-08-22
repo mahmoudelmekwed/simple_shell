@@ -1,38 +1,38 @@
 #include "shell.h"
 
 /**
- * interactive1 - Entry point
- * interactive1: ..
- * @info: ..
+ * interactive - Entry point
+ * interactive: ..
+ * @i: ..
  * Return: ..
  */
-int interactive1(info_t *info)
+int interactive(info_t *i)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && i->readfd <= 2);
 }
 
 /**
- * is_delim1 - Entry point
- * is_delim1: ..
+ * is_delim - Entry point
+ * is_delim: ..
  * @x: ..
- * @delim1: ...
+ * @delim: ...
  * Return: ...
  */
-int is_delim1(char x, char *delim1)
+int is_delim(char x, char *delim)
 {
-	while (*delim1)
-		if (*delim1++ == x)
+	while (*delim)
+		if (*delim++ == x)
 			return (1);
 	return (0);
 }
 
 /**
- * _isalpha1 - Entry point
- * _isalpha1: ...
+ * _isalpha - Entry point
+ * _isalpha: ...
  * @u: ..
  * Return: ..
  */
-int _isalpha1(int u)
+int _isalpha(int u)
 {
 	if ((u >= 'a' && u <= 'z') || (u >= 'A' && u <= 'Z'))
 		return (1);
@@ -41,8 +41,8 @@ int _isalpha1(int u)
 }
 
 /**
- * _atoi1 - Entry point
- * _atoi1: ..
+ * _atoi - Entry point
+ * _atoi: ..
  * @x: ..
  * Return: ..
  */

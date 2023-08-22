@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _memset1 - Entry point
- * _memset1: ..
+ * _memset - Entry point
+ * _memset: ..
  * @x: ..
  * @l: ..
  * @m: ..
  * Return: ..
  */
-char *_memset1(char *x, char l, unsigned int m)
+char *_memset(char *x, char l, unsigned int m)
 {
 	unsigned int u;
 
@@ -18,11 +18,11 @@ char *_memset1(char *x, char l, unsigned int m)
 }
 
 /**
- * ffree1 - Entry point
- * ffree1: ..
+ * ffree - Entry point
+ * ffree: ..
  * @xx: ..
  */
-void ffree1(char **xx)
+void ffree(char **xx)
 {
 	char **m = xx;
 
@@ -34,14 +34,14 @@ void ffree1(char **xx)
 }
 
 /**
- * _realloc1 - Entry point
- * _realloc1: .
+ * _realloc - Entry point
+ * _realloc: .
  * @p: ...
  * @o: ..
  * @n: ..
  * Return: ..
  */
-void *_realloc1(void *p, unsigned int o, unsigned int n)
+void *_realloc(void *p, unsigned int o, unsigned int n)
 {
 	char *x;
 

@@ -1,38 +1,38 @@
 #include "shell.h"
 
 /**
- * hsh1 - Entry point
- * hsh1: ..
+ * hsh - Entry point
+ * hsh: ..
  * @i: ..
  * @ac: ...
  * Return: ..
  */
-int hsh1(info_t *i, char **ac)
+int hsh(info_t *i, char **ac)
 {
 	ssize_t x = 0;
 	int b_ret = 0;
 
 	while (x != -1 && b_ret != -2)
 	{
-		clear_info1(i);
-		if (interactive1(i))
-			_puts1("$ ");
+		clear_info(i);
+		if (interactive(i))
+			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		x = get_input1(i);
+		x = get_input(i);
 		if (x != -1)
 		{
-			set_info1(i, ac);
-			b_ret = find_builtin1(i);
+			set_info(i, ac);
+			b_ret = find_builtin(i);
 			if (b_ret == -1)
-				find_cmd1(i);
+				find_cmd(i);
 		}
-		else if (interactive1(i))
-			_putchar1('\n');
-		free_info1(i, 0);
+		else if (interactive(i))
+			_putchar('\n');
+		free_info(i, 0);
 	}
-	write_history1(i);
-	free_info1(i, 1);
-	if (!interactive1(i) && i->status)
+	write_history(i);
+	free_info(i, 1);
+	if (!interactive(i) && i->status)
 		exit(i->status);
 	if (b_ret == -2)
 	{
@@ -44,27 +44,27 @@ int hsh1(info_t *i, char **ac)
 }
 
 /**
- * find_builtin1 - Entry point
- * find_builtin1: ..
+ * find_builtin - Entry point
+ * find_builtin: ..
  * @i: ..
  * Return: ..
  */
-int find_builtin1(info_t *i)
+int find_builtin(info_t *i)
 {
 	int x, b_in_ret = -1;
 	builtin_table builtintb2[] = {
-		{"exit", _myexit1},
-		{"env", _myenv1},
-		{"help", _myhelp1},
-		{"history", _myhistory1},
-		{"setenv", _mysetenv1},
-		{"unsetenv", _myunsetenv1},
-		{"cd", _mycd1},
-		{"alias", _myalias1},
+		{"exit", _myexit},
+		{"env", _myenv},
+		{"help", _myhelp},
+		{"history", _myhistory},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv},
+		{"cd", _mycd},
+		{"alias", _myalias},
 		{NULL, NULL}
 	};
 	for (x = 0; builtintb2[x].type; x++)
-		if (_strcmp1(i->argv[0], builtintb2[x].type) == 0)
+		if (_strcmp(i->argv[0], builtintb2[x].type) == 0)
 		{
 			i->line_count++;
 			b_in_ret = builtintb2[x].func(i);
@@ -74,12 +74,12 @@ int find_builtin1(info_t *i)
 }
 
 /**
- * find_cmd1 - Entry point
- * find_cmd1: ..
+ * find_cmd - Entry point
+ * find_cmd: ..
  * @i: ..
  * Return: ..
  */
-void find_cmd1(info_t *i)
+void find_cmd(info_t *i)
 {
 	char *p = NULL;
 	int x, v;
@@ -91,36 +91,36 @@ void find_cmd1(info_t *i)
 		i->linecount_flag = 0;
 	}
 	for (x = 0, v = 0; i->arg[x]; x++)
-		if (!is_delim1(i->arg[x], " \t\n"))
+		if (!is_delim(i->arg[x], " \t\n"))
 			v++;
 	if (!v)
 		return;
-	p = find_path(i, _getenv1(i, "PATH="), i->argv[0]);
+	p = find_path(i, _getenv(i, "PATH="), i->argv[0]);
 	if (!p)
 	{
 		i->path = p;
-		fork_cmd1(i);
+		fork_cmd(i);
 	}
 	else
 	{
-		if ((interactive1(i) || _getenv1(i, "PATH=")
+		if ((interactive(i) || _getenv(i, "PATH=")
 					|| i->argv[0][0] == '/') && is_cmd(i, i->argv[0]))
-			fork_cmd1(i);
+			fork_cmd(i);
 		else if (*(i->arg) != '\n')
 		{
 			i->status = 127;
-			print_error1(i, "not found\n");
+			print_error(i, "not found\n");
 		}
 	}
 }
 
 /**
- * fork_cmd1 - Entry point
- * fork_cmd1: ..
+ * fork_cmd - Entry point
+ * fork_cmd: ..
  * @i: ..
  * Return: ..
  */
-void fork_cmd1(info_t *i)
+void fork_cmd(info_t *i)
 {
 	pid_t c_pid;
 
@@ -132,9 +132,9 @@ void fork_cmd1(info_t *i)
 	}
 	if (c_pid == 0)
 	{
-		if (execve(i->path, i->argv, get_environ1(i)) == -1)
+		if (execve(i->path, i->argv, get_environ(i)) == -1)
 		{
-			free_info1(i, 1);
+			free_info(i, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -147,7 +147,7 @@ void fork_cmd1(info_t *i)
 		{
 			i->status = WEXITSTATUS(i->status);
 			if (i->status == 126)
-				print_error1(i, "Permission denied\n");
+				print_error(i, "Permission denied\n");
 		}
 	}
 }
