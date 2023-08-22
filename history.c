@@ -1,39 +1,39 @@
 #include "shell.h"
 
 /**
- * get_history_file1 - get history file
+ * get_history_file - get history file
  * @i: ..
  *
  * Return: string containing history file
  */
 
-char *get_history_file1(info_t *i)
+char *get_history_file(info_t *i)
 {
 	char *bf, *dir;
 
-	dir = _getenv1(i, "HOME=");
+	dir = _getenv(i, "HOME=");
 	if (!dir)
 		return (NULL);
-	bf = malloc(sizeof(char) * (_strlen1(dir) + _strlen1(HIST_FILE) + 2));
+	bf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
 	if (!bf)
 		return (NULL);
 	bf[0] = 0;
-	_strcpy1(bf, dir);
-	_strcat1(bf, "/");
-	_strcat1(bf, HIST_FILE);
+	_strcpy(bf, dir);
+	_strcat(bf, "/");
+	_strcat(bf, HIST_FILE);
 	return (bf);
 }
 
 /**
- * write_history1 - appends file to existing file
+ * write_history - appends file to existing file
  * @i: parameter struct
  *
- * Return: 1 success, or -1
+ * Return: 1 success else -1
  */
-int write_history1(info_t *i)
+int write_history(info_t *i)
 {
 	ssize_t fd;
-	char *fname = get_history_file1(i);
+	char *fname = get_history_file(i);
 	list_t *n = NULL;
 
 	if (!fname)
@@ -54,17 +54,17 @@ int write_history1(info_t *i)
 }
 
 /**
- * read_history1 - Read history
+ * read_history - Read history
  * @i: Parameter struct
  *
  * Return: histcount on success, else 0
  */
-int read_history1(info_t *i)
+int read_history(info_t *i)
 {
 	int j, end = 0, line = 0;
 	ssize_t fd, readlen, fsize = 0;
 	struct stat st;
-	char *bf = NULL, *fname = get_history_file1(i);
+	char *bf = NULL, *fname = get_history_file(i);
 
 	if (!fname)
 		return (0);
@@ -89,34 +89,34 @@ int read_history1(info_t *i)
 		if (bf[j] == '\n')
 		{
 			bf[j] = 0;
-			build_history_list1(i, bf + end, line++);
+			build_history_list(i, bf + end, line++);
 			end = j + 1;
 		}
 	if (end != j)
-		build_history_list1(i, bf + end, line++);
+		build_history_list(i, bf + end, line++);
 	free(bf);
 	i->histcount = line;
 	while (i->histcount-- >= HIST_MAX)
-		delete_node_at_index1(&(i->history), 0);
-	renumber_history1(i);
+		delete_node_at_index(&(i->history), 0);
+	renumber_history(i);
 	return (i->histcount);
 }
 
 /**
- * build_history_list1 - Entry to history linked list
+ * build_history_list - Entry to history linked list
  * @i: Structure containing potential arguments
  * @bf: buffer
  * @line: linecount
  *
  * Return: 0
  */
-int build_history_list1(info_t *i, char *bf, int line)
+int build_history_list(info_t *i, char *bf, int line)
 {
 	list_t *n = NULL;
 
 	if (i->history)
 		n = i->history;
-	add_node_end1(&n, bf, line);
+	add_node_end(&n, bf, line);
 
 	if (!i->history)
 		i->history = n;
@@ -124,12 +124,12 @@ int build_history_list1(info_t *i, char *bf, int line)
 }
 
 /**
- * renumber_history1 - number the history linked list
+ * renumber_history - number the history linked list
  * @i: ..
  *
  * Return: New history count
  */
-int renumber_history1(info_t *i)
+int renumber_history(info_t *i)
 {
 	list_t *n = i->history;
 	int j = 0;

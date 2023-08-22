@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- **_strncpy1 - Copies string
+ **_strncpy - Copies string
  *@des: the destination string
  *@src: Source string
  *@no: the amount
  *Return: Concatenated str
  */
-char *_strncpy1(char *des, char *src, int no)
+char *_strncpy(char *des, char *src, int no)
 {
 	int i, j;
 	char *c = des;
@@ -31,13 +31,13 @@ char *_strncpy1(char *des, char *src, int no)
 }
 
 /**
- **_strncat1 - Concatenates two string
+ **_strncat - Concatenates two string
  *@des: First string
  *@src: Second string
  *@no: amount
  *Return: Concatenated string
  */
-char *_strncat1(char *des, char *src, int no)
+char *_strncat(char *des, char *src, int no)
 {
 	int i, j;
 	char *c = des;
@@ -58,12 +58,12 @@ char *_strncat1(char *des, char *src, int no)
 }
 
 /**
- **_strchr1 - ..
+ **_strchr - ..
  *@str: String parsed
  *@c: the character
  *Return: (m)
  */
-char *_strchr1(char *str, char c)
+char *_strchr(char *str, char c)
 {
 	do {
 		if (*str == c)

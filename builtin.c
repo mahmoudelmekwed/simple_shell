@@ -13,16 +13,16 @@ int _myexit(info_t *i)
 
 	if (i->argv[1]) /* If exit arguement exists*/
 	{
-		exit = erratoi1(i->argv[1]);
+		exit = erratoi(i->argv[1]);
 		if (exit == -1)
 		{
 			i->status = 2;
-			print_error1(i, "Illegal number: ");
+			print_error(i, "Illegal number: ");
 			_eputs(i->argv[1]);
 			_eputchar('\n');
 			return (1);
 		}
-		i->err_num = erratoi1(i->argv[1]);
+		i->err_num = erratoi(i->argv[1]);
 		return (-2);
 	}
 	i->err_num = -1;
@@ -42,39 +42,39 @@ int _mycd(info_t *i)
 
 	x = getcwd(buffer, 1024);
 	if (!x)
-		_puts1("TODO: >>getcwd failure emsg here<<\n");
+		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!i->argv[1])
 	{
-		dir = _getenv1(i, "HOME=");
+		dir = _getenv(i, "HOME=");
 		if (!dir)
 			chdir_ret = /* TODO: what should this be? */
-				chdir((dir = _getenv1(i, "PWD=")) ? dir : "/");
+				chdir((dir = _getenv(i, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp1(i->argv[1], "-") == 0)
+	else if (_strcmp(i->argv[1], "-") == 0)
 	{
-		if (!_getenv1(i, "OLDPWD="))
+		if (!_getenv(i, "OLDPWD="))
 		{
-			_puts1(x);
-			_putchar1('\n');
+			_puts(x);
+			_putchar('\n');
 			return (1);
 		}
-		_puts1(_getenv1(i, "OLDPWD=")), _putchar1('\n');
+		_puts(_getenv(i, "OLDPWD=")), _putchar('\n');
 		chdir_ret = /* TODO: what should this be? */
-			chdir((dir = _getenv1(i, "OLDPWD=")) ? dir : "/");
+			chdir((dir = _getenv(i, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_ret = chdir(i->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error1(i, "can't cd to ");
-		_puts1(i->argv[1]), _putchar1('\n');
+		print_error(i, "can't cd to ");
+		_puts(i->argv[1]), _putchar('\n');
 	}
 	else
 	{
-		_setenv1(i, "OLDPWD", _getenv1(i, "PWD="));
-		_setenv1(i, "PWD", getcwd(buffer, 1024));
+		_setenv(i, "OLDPWD", _getenv(i, "PWD="));
+		_setenv(i, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
@@ -90,8 +90,8 @@ int _myhelp(info_t *i)
 	char **arg_arr;
 
 	arg_arr = i->argv;
-	_puts1("help call works. Function not yet implemented \n");
+	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts1(*arg_arr); /* temp att_unused workaround */
+		_puts(*arg_arr); /* temp att_unused workaround */
 	return (0);
 }
