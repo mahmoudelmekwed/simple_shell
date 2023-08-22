@@ -98,7 +98,7 @@ list_t *node_starts_with(list_t *hptr, char *pref, char nex)
 }
 
 /**
- * get_node_index1 - return node index
+ * get_node_index - return node index
  * @hptr: first node pointer
  * @n: node pointer
  * Return: node index else -1

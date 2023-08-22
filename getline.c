@@ -17,11 +17,11 @@ ssize_t input_buf(info_t *i, char **bf, size_t *l)
 	{
 		free(*bf);
 		*bf = NULL;
-		signal(SIGINT, siginhandler1);
+		signal(SIGINT, siginhandler);
 #if USE_GETLINE
-		r = getline1(bf, &l_p, stdin);
+		r = getline(bf, &l_p, stdin);
 #else
-		r = _getline1(i, bf, &l_p);
+		r = _getline(i, bf, &l_p);
 #endif
 		if (r > 0)
 		{
@@ -31,8 +31,8 @@ ssize_t input_buf(info_t *i, char **bf, size_t *l)
 				r--;
 			}
 			i->linecount_flag = 1;
-			remove_comments1(*bf);
-			build_history_list1(i, *bf, i->histcount++);
+			remove_comments(*bf);
+			build_history_list(i, *bf, i->histcount++);
 			{
 				*l = r;
 				i->cmd_buf = bf;
@@ -43,19 +43,19 @@ ssize_t input_buf(info_t *i, char **bf, size_t *l)
 }
 
 /**
- * get_input1 - line minus newline
+ * get_input - line minus newline
  * @i: parameter struct
  *
  * Return: bytes
  */
-ssize_t get_input1(info_t *i)
+ssize_t get_input(info_t *i)
 {
 	static char *bf;
 	static size_t x, j, ln;
 	ssize_t r = 0;
 	char **bf_p = &(i->arg), *p;
 
-	_putchar1(BUF_FLUSH);
+	_putchar(BUF_FLUSH);
 	r = input_buf(i, &bf, &ln);
 	if (r == -1)
 		return (-1);
@@ -64,10 +64,10 @@ ssize_t get_input1(info_t *i)
 		j = x;
 		p = bf + x;
 
-		check_chain1(i, bf, &j, x, ln);
+		check_chain(i, bf, &j, x, ln);
 		while (j < ln)
 		{
-			if (is_chain1(i, bf, &j))
+			if (is_chain(i, bf, &j))
 				break;
 			j++;
 		}
@@ -78,7 +78,7 @@ ssize_t get_input1(info_t *i)
 			x = ln = 0;
 			i->cmd_buf_type = CMD_NORM;
 		}
-		return (_strlen1(p));
+		return (_strlen(p));
 	}
 
 	*bf_p = bf;
@@ -105,14 +105,14 @@ ssize_t read_bf(info_t *i, char *bf, size_t *s)
 }
 
 /**
- * _getline1 - get next line from STDIN
+ * _getline - get next line from STDIN
  * @i: parameter struct
  * @bf: pointer to buffer
  * @ln: size of preallocated ptr buffer
  *
  * Return: s
  */
-int _getline1(info_t *i, char **bf, size_t *ln)
+int _getline(info_t *i, char **bf, size_t *ln)
 {
 	static char buf[READ_BUF_SIZE];
 	static size_t x, len;
@@ -130,16 +130,16 @@ int _getline1(info_t *i, char **bf, size_t *ln)
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
-	c = _strchr1(buf + x, '\n');
+	c = _strchr(buf + x, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
-	new_p = _realloc1(p, s, s ? s + k : k + 1);
+	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p)
 		return (p ? free(p), -1 : -1);
 
 	if (s)
-		_strncat1(new_p, buf + x, k - x);
+		_strncat(new_p, buf + x, k - x);
 	else
-		_strncpy1(new_p, buf + x, k - x + 1);
+		_strncpy(new_p, buf + x, k - x + 1);
 
 	s += k - x;
 	x = k;
@@ -152,14 +152,14 @@ int _getline1(info_t *i, char **bf, size_t *ln)
 }
 
 /**
- * siginhandler1 - blocks ctrl-C
+ * siginhandler - blocks ctrl-C
  * @si:..
  *
  * Return: ..
  */
-void siginhandler1(__attribute__((unused))int si)
+void siginhandler(__attribute__((unused))int si)
 {
-	_puts1("\n");
-	_puts1("$ ");
-	_putchar1(BUF_FLUSH);
+	_puts("\n");
+	_puts("$ ");
+	_putchar(BUF_FLUSH);
 }
