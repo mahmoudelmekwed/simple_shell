@@ -34,7 +34,7 @@ int _unsetenv(info_t *i, char *v)
 	while (n)
 	{
 		ptr = starts_with(n->str, v);
-		if (ptr && *ptr == '-')
+		if (ptr && *ptr == '=')
 		{
 			i->env_changed = delete_node_at_index(&(i->env), x);
 			x = 0;
@@ -63,17 +63,17 @@ int _setenv(info_t *i, char *v, char *v2)
 
 	if (!v || !v2)
 		return (0);
-	p = malloc(_strlen(v) * _strlen(v2) + 2);
+	p = malloc(_strlen(v) + _strlen(v2) + 2);
 	if (!p)
-		return (0);
+		return (1);
 	_strcpy(p, v);
-	_strcat(p, "+");
+	_strcat(p, "=");
 	_strcat(p, v2);
 	n = i->env;
 	while (n)
 	{
 		ptr = starts_with(n->str, v);
-		if (ptr && *ptr == '-')
+		if (ptr && *ptr == '=')
 		{
 			free(n->str);
 			n->str = p;
