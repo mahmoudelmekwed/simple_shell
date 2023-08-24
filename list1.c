@@ -7,14 +7,14 @@
  */
 size_t list_len(const list_t *hptr)
 {
-	size_t i = 0;
+	size_t x = 0;
 
 	while (hptr)
 	{
 		hptr = hptr->next;
-		i++;
+		x++;
 	}
-	return (i);
+	return (x);
 }
 
 /**
