@@ -37,13 +37,13 @@ int erratoi(char *x)
  */
 void print_error(info_t *w, char *x)
 {
-	_puts(w->fname);
-	_puts(": ");
+	_eputs(w->fname);
+	_eputs(": ");
 	print_d(w->line_count, STDERR_FILENO);
-	_puts(": ");
-	_puts(w->argv[0]);
-	_puts(": ");
-	_puts(x);
+	_eputs(": ");
+	_eputs(w->argv[0]);
+	_eputs(": ");
+	_eputs(x);
 }
 
 /**
@@ -55,12 +55,12 @@ void print_error(info_t *w, char *x)
  */
 int print_d(int i, int fg)
 {
-	int (*__putchar)(char) = __putchar;
+	int (*__putchar)(char) = _putchar;
 	int z, c = 0;
 	unsigned int _ab_, cu;
 
 	if (fg == STDERR_FILENO)
-		__putchar = _putchar;
+		__putchar = _eputchar;
 	if (i < 0)
 	{
 		_ab_ = -i;
@@ -105,7 +105,7 @@ char *convert_number(long int n, int b, int f)
 		x = -n;
 		s = '-';
 	}
-	arr = f & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789abcdef";
+	arr = f & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	p = &buff[49];
 	*p = '\0';
 
