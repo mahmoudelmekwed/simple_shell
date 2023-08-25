@@ -69,7 +69,7 @@ int _mycd(info_t *i)
 	if (chdir_ret == -1)
 	{
 		print_error(i, "can't cd to ");
-		_puts(i->argv[1]), _putchar('\n');
+		_eputs(i->argv[1]), _eputchar('\n');
 	}
 	else
 	{
@@ -87,11 +87,11 @@ int _mycd(info_t *i)
  */
 int _myhelp(info_t *i)
 {
-	char **arg_arr;
+	char **arg;
 
-	arg_arr = i->argv;
+	arg = i->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_arr); /* temp att_unused workaround */
+		_puts(*arg); /* temp att_unused workaround */
 	return (0);
 }

@@ -70,7 +70,7 @@ int print_alias(list_t *n)
 	{
 		x = _strchr(n->str, '=');
 		for (i = n->str; i <= x; i++)
-		_putchar(*i);
+			_putchar(*i);
 		_putchar('\'');
 		_puts(x + 1);
 		_puts("'\n");
